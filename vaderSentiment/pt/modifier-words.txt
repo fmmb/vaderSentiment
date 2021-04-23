@@ -1,0 +1,14 @@
+no	não
+kind	tipo
+of	de
+at	pelo
+least	menos
+very	muito
+but	mas
+never	nunca
+so	assim
+this	isto
+without	sem
+doubt	dúvida
+or	ou
+nor	nem

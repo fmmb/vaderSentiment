@@ -1,0 +1,14 @@
+no	no
+kind	kind
+of	of
+at	at
+least	leat
+very	very
+but	but
+never	never
+so	so
+this	this
+without	without
+doubt	doubt
+or	or
+nor	nor

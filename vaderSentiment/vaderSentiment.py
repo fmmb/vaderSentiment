@@ -55,7 +55,7 @@ def allcap_differential(words):
 class LanguageKB():
     
     def __init__(self, language, B_INCR, B_DECR, C_INCR, N_SCALAR):
-        assert(language in ["en", "pt"])
+        assert(os.path.exists(language))
         
         self.B_INCR = B_INCR
         self.C_INCR = C_INCR
@@ -63,6 +63,7 @@ class LanguageKB():
         self.B_DECR = B_DECR
         self.language = language
         
+        self.WORD = self.read_modifier_words(f"./{language}/modifier-words.txt")
         self.NEGATE = self.read_negate(f"./{language}/negate.txt")
         # booster/dampener 'intensifiers' or 'degree adverbs'
         # http://en.wiktionary.org/wiki/Category:English_degree_adverbs
@@ -74,16 +75,6 @@ class LanguageKB():
         self.LEXICON = self.read_lexicon(f"./{language}/vader_lexicon.txt")
         self.EMOJIS = self.read_emoji("./emoji_utf8_lexicon.txt")
             
-        if language == "en":
-            self.WORD = {'no':'no', 'kind':'kind', 'of':'of', 
-                         'at':'at', 'least':'least', 'very':'very', 'but':'but', 
-                         'never':'never', 'so': 'so', 'this': 'this', 
-                         'without':'without', 'doubt':'doubt', 'or':'or', 'nor':'nor'}
-        elif language == "pt":
-            self.WORD = {'no':'não', 'kind':'tipo', 'of':'de', 
-                         'at':'pelo', 'least':'menos', 'very':'muito', 'but':'mas', 
-                         'never':'nunca', 'so': 'assim', 'this': 'isto', 
-                         'without':'sem', 'doubt':'dúvida', 'or':'ou', 'nor': 'nem'}
             
     @staticmethod
     def read_lexicon(filename):
@@ -143,6 +134,17 @@ class LanguageKB():
                 info = line.strip().split("\t")
                 idioms[info[0]] = int(info[1])
         return idioms
+
+    @staticmethod
+    def read_modifier_words(filename):
+        words = {}
+        with open(filename, encoding="utf-8") as myfile:
+            for line in myfile:
+                if line.startswith("#") or len(line.strip()) == 0:
+                    continue            
+                info = line.strip().split("\t")
+                words[info[0]] = info[1]
+        return words
 
     @staticmethod
     def read_special_cases(filename):
@@ -529,7 +531,7 @@ def read_examples(filename):
         return [line.strip() for line in myfile if not line.startswith("#") and len(line.strip()) > 0]
 
 if __name__ == '__main__':
-    language = 'pt'  # works with "en" and "pt"
+    language = 'pt2' 
 
     analyzer = SentimentIntensityAnalyzer(language)
 

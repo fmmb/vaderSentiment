@@ -4,3 +4,635 @@ bufar	-2
 parte uma perna	2
 no vermelho	-2
 ao frio e à chuva	-2
+abrir a alma	2
+abrir o coração	2
+abrir os olhos	2
+acertar na mosca	2
+acertar na mouche	2
+achar piada a	2
+acordar com o rabo para o ar	-2
+acordar com os pés de fora	-2
+afogar as mágoas	-2
+afogar-se em pouca água	-2
+agarrar a oportunidade com unhas e dentes	2
+agarrar a oportunidade	2
+agarrar o touro pelos cornos	2
+agarrar-se ao poder	-2
+agir de boa-fé	2
+agir de má-fé	-2
+aguentar-se bem	2
+andar a apanhar bonés	-2
+andar à deriva	-2
+andar a dormir à sombra da bananeira	-2
+andar a dormir	-2
+andar a falar sozinho	-2
+andar à nora	-2
+andar a pensar na morte da bezerra	-2
+andar a reboque de	-2
+andar à sombra da bananeira	-2
+andar ao deus dará	-2
+andar aos bonés	-2
+andar aos caídos	-2
+andar aos papéis	-2
+andar armado em carapau de corrida	-2
+andar às aranhas	-2
+andar às cavalitas de	-2
+andar às cegas	-2
+andar às turras com	-2
+andar com a cabeça na lua	-2
+andar com cara de caso	-2
+andar com dor de corno	-2
+andar com dor de cotovelo	-2
+andar com macacos na cabeça	-2
+andar com macacos no sótão	-2
+andar com macaquinhos na cabeça	-2
+andar com macaquinhos no sótão	-2
+andar com o coração nas mãos	-2
+andar com os azeites	-2
+andar de olhos vendados	-2
+andar de trombas	-2
+andar em pele e osso	-2
+andar feito barata tonta	-2
+andar feito com	-2
+andar na boa vida	-2
+andar na lua	-2
+andar na má vida	-2
+andar nas sete quintas	2
+andar pelos cabelos	-2
+apanhar nas orelhas	-2
+apanhar por tabela	-2
+aplicar golpes baixos a	-2
+apresentar alternativas	2
+apresentar resultados	2
+apunhalar pelas costas	-2
+armar barraca	-2
+armar-se aos cágados	-2
+armar-se aos cucos	-2
+armar-se em carapau de corrida	-2
+armar-se em chico esperto	-2
+armar-se em parvo	-2
+arranjar lenha para se queimar	-2
+arranjar sarna para se coçar	-2
+arranjar um bico de obra	-2
+arrumar as botas	-2
+atirar areia para os olhos de	-2
+atirar barro à parede	-2
+atirar com as culpas a	-2
+atirar poeira aos olhos de	-2
+bater a bota	-2
+bater as botas	-2
+bater com o nariz na porta	-2
+bater no ceguinho	-2
+bater no fundo	-2
+cair na armadilha	-2
+cair na boca do lobo	-2
+cair na ratoeira	-2
+cair por terra	-2
+calar a boca	-2
+calar o bico	-2
+cantar bem mas não me alegra	-2
+cantar de galo	-2
+cantar vitória antes do tempo	-2
+captar eleitorado	2
+chamar nomes a	-2
+chamar os bois pelos nomes	2
+cheirar a mofo	-2
+chorar sobre o leite derramado	-2
+colocar o dedo na ferida	2
+combater o desemprego	2
+comer gato por lebre	-2
+comer o pão que o diabo amassou	-2
+comprar gato por lebre	-2
+confundir alhos com bugalhos	-2
+conseguir um grande feito	2
+contentar-se com pouco	-2
+correr a toque de caixa	-2
+cortar na casaca de	-2
+cruzar os braços	-2
+dar à língua	-2
+dar à sola	-2
+dar à soleta	-2
+dar a volta ao miolo	-2
+dar alegrias a	2
+dar ao pé	-2
+dar bandeira	-2
+dar barraca	-2
+dar cabo da vida a	-2
+dar com a boca no trombone	-2
+dar com a língua nos dentes	-2
+dar com os burros na água	-2
+dar com os pés a	-2
+dar conta do recado	2
+dar de frosques	-2
+dar graxa a	-2
+dar no duro	2
+dar o corpo ao manifesto	-2
+dar o dito por não dito	-2
+dar o golpe a	-2
+dar o golpe do baú	-2
+dar o litro	2
+dar o primeiro passo	2
+dar palmadinhas nas costas a	-2
+dar pontapés na gramática	-2
+dar tiros nos pés	-2
+dar um pontapé no cu a	-2
+dar um show de bola	2
+dar um tiro no pé	-2
+dar uma no cravo e outra na ferradura	-2
+dar voltas no caixão	-2
+defraudar as expectativas de	-2
+deitar achas na fogueira	-2
+deitar água na fervura	2
+deitar as unhas a	-2
+deitar foguetes antes da festa	-2
+deitar lenha na fogueira	-2
+deitar poeira aos olhos a	-2
+deitar poeira para os olhos de	-2
+deitar tudo a perder	-2
+deitar tudo para trás das costas	-2
+deitar tudo por água abaixo	-2
+deixar com as calças na mão	-2
+deixar com as mãos a abanar	-2
+deixar de rastos	-2
+deixar muito a desejar	-2
+deixar o barco à deriva	-2
+deixar o país de tanga	-2
+deixar tudo para depois	-2
+deixar-se levar	-2
+denegrir a imagem de	-2
+denegrir a sua imagem	-2
+desaparecer do mapa	-2
+descer ao mais baixo nível	-2
+descer nas sondagens	-2
+desviar dinheiro	-2
+dever comer farinha maizena	-2
+dever dobrar a língua	-2
+dever ter vergonha na cara	-2
+dizer a verdade	2
+dizer cobras e lagartos de	-2
+dizer mal de	-2
+encher as medidas de	2
+encolher os ombros	-2
+encostar-se a	-2
+enfiar o barrete	-2
+enfrentar o touro pelos cornos	2
+engolir em seco	-2
+enterrar a cabeça na areia	-2
+entregar a alma ao criador	-2
+entregar a alma ao diabo	-2
+entregar o ouro ao bandido	-2
+entregar-se de corpo e alma	2
+erguer a cabeça	2
+esbanjar dinheiro	-2
+esconder a verdade	-2
+espetar-se ao comprido	-2
+estalar o verniz	-2
+estar à altura de	2
+estar à altura	2
+estar à beira do precipício	-2
+estar à deriva	-2
+estar a dormir à sombra da bananeira	-2
+estar a dormir	-2
+estar a falar para as paredes	-2
+estar a falar sozinho	-2
+estar a jeito	-2
+estar à nora	-2
+estar a pensar na morte da bezerra	-2
+estar à rasca	-2
+estar à rasquinha	-2
+estar a secar	-2
+estar à sombra da bananeira	-2
+estar aí para as curvas	2
+estar ao deus dará	-2
+estar armado em carapau de corrida	-2
+estar às aranhas	-2
+estar às cegas	-2
+estar às turras com	-2
+estar bem	2
+estar com a cabeça na lua	-2
+estar com a corda ao pescoço	-2
+estar com a corda na garganta	-2
+estar com a corda no pescoço	-2
+estar com a lágrima no canto do olho	-2
+estar com cara de caso	-2
+estar com dor de corno	-2
+estar com dor de cotovelo	-2
+estar com macacos na cabeça	-2
+estar com macacos no sótão	-2
+estar com macaquinhos na cabeça	-2
+estar com macaquinhos no sótão	-2
+estar com o coração nas mãos	-2
+estar com os azeites	-2
+estar com os pés para a cova	-2
+estar com um aperto no coração	-2
+estar de cabeça quente	-2
+estar de mãos a abanar	-2
+estar de mãos atadas	-2
+estar de mãos e pés atados	-2
+estar de molho	-2
+estar de olhos vendados	-2
+estar de pés atados	-2
+estar de saúde	2
+estar de tanga	-2
+estar de trombas	-2
+estar em baixo de forma	-2
+estar em baixo	-2
+estar em grande forma	2
+estar em grande	2
+estar em pedaços	-2
+estar em pele e osso	-2
+estar enterrado até às orelhas	-2
+estar feito ao bife	-2
+estar feito barata tonta	-2
+estar feito com	-2
+estar fora de si	-2
+estar na lua	-2
+estar na retranca	-2
+estar nas mãos de	-2
+estar nas sete quintas	2
+estar no bom caminho	2
+estar num beco sem saída	-2
+estar pelos cabelos	-2
+estar por um fio	-2
+estar sempre a bater na mesma tecla	-2
+estar-se nas tintas	-2
+esticar o pernil	-2
+esvair-se em sangue	-2
+experimentar dificuldades	-2
+falar com convicção	2
+falar de barriga cheia	-2
+falar demais	-2
+falar para as paredes	-2
+falar para o boneco	-2
+falar sem convicção	-2
+falar verdade	2
+faltar à palavra	-2
+faltar ao compromisso	-2
+faltar ao respeito	-2
+fazer à custa de	-2
+fazer a folha a	-2
+fazer asneira	-2
+fazer beicinho	-2
+fazer biquinho	-2
+fazer boa figura	2
+fazer caretas	-2
+fazer com os olhos fechados	2
+fazer com uma perna às costas	2
+fazer das tripas coração	2
+fazer faísca	-2
+fazer figura de urso	-2
+fazer figura triste	-2
+fazer filmes	-2
+fazer gato e sapato de	-2
+fazer horas	-2
+fazer má figura	-2
+fazer orelhas moucas	-2
+fazer ouvidos de mercador	-2
+fazer pouco de	-2
+fazer um grande feito	2
+fazer um negócio da China	2
+fazer uma boa jogada	2
+fazer uma figura decente	2
+fazer uma jogada de mestre	2
+fazer uma rica parelha	-2
+fazer uma tempestade num copo de água	-2
+fazer vista grossa	-2
+fazer xeque-mate	2
+fazer-se de vítima	-2
+fechar os olhos	-2
+fechar-se em copas	-2
+ferver em pouca água	-2
+ficar a apanhar bonés	-2
+ficar a chupar no dedo	-2
+ficar à deriva	-2
+ficar a dormir à sombra da bananeira	-2
+ficar a falar para as paredes	-2
+ficar a falar sozinho	-2
+ficar a jeito	-2
+ficar à nora	-2
+ficar a pensar na morte da bezerra	-2
+ficar a secar	-2
+ficar à sombra da bananeira	-2
+ficar à sombra de	-2
+ficar a ver navios	-2
+ficar ao deus dará	-2
+ficar aos caídos	-2
+ficar às aranhas	-2
+ficar às cegas	-2
+ficar com a cabeça em água	-2
+ficar com a cabeça na lua	-2
+ficar com as calças na mão	-2
+ficar com cara de caso	-2
+ficar com dor de corno	-2
+ficar com dor de cotovelo	-2
+ficar com macacos na cabeça	-2
+ficar com macacos no sótão	-2
+ficar com macaquinhos na cabeça	-2
+ficar com macaquinhos no sótão	-2
+ficar com o coração nas mãos	-2
+ficar com os louros	-2
+ficar de mãos a abanar	-2
+ficar de mãos atadas	-2
+ficar de mãos e pés atados	-2
+ficar de molho	-2
+ficar de pés atados	-2
+ficar de tanga	-2
+ficar de trombas	-2
+ficar em pedaços	-2
+ficar em primeiro	2
+ficar em último	-2
+ficar enterrado até às orelhas	-2
+ficar feito barata tonta	-2
+ficar fora de si	-2
+ficar mal visto	-2
+ficar na lua	-2
+ficar nas mãos de	-2
+ficar num beco sem saída	-2
+ficar para tio	-2
+ficar pelos cabelos	-2
+ficar reduzido a nada	-2
+ficar reduzido a zero	-2
+ficar sem argumentos	-2
+fugir à questão	-2
+fugir à responsabilidade	-2
+fugir a sete pés	-2
+fugir ao fisco	-2
+fugir às perguntas	-2
+fugir às responsabilidades	-2
+fugir com o rabo à seringa	-2
+gastar mundos e fundos	-2
+honrar a sua palavra	2
+honrar os seus compromissos	2
+induzir em erro	-2
+infernizar a vida a	-2
+inspirar confiança	2
+invadir a privacidade de	-2
+ir à luta	2
+ir ao chão	-2
+ir ao tapete	-2
+ir aos arames	-2
+ir às nuvens	2
+ir às paredes	-2
+ir dentro	-2
+ir desta para melhor	-2
+ir para o outro mundo	-2
+ir pelo caminho errado	-2
+ir pelos ares	-2
+ir-se abaixo	-2
+ir-se ao ar	-2
+ir-se aos ares	-2
+jogar ao faz de conta	-2
+juntar o útil ao agradável	2
+lamber as botas a	-2
+laurear a pevide	-2
+lavar roupa suja	-2
+levantar a cabeça	2
+levar a melhor	2
+levar a sua avante	2
+levar com a porta na cara	-2
+levar com um balde de água fria	-2
+levar na corneta	-2
+levar nas orelhas de	-2
+levar nas orelhas	-2
+levar porrada	-2
+levar um baile	-2
+levar um banho de água fria	-2
+levar um pontapé no cu	-2
+levar um tiro	-2
+levar uma abada	-2
+levar uma cabazada	-2
+levar uma coça	-2
+levar uma malha	-2
+levar uma surra	-2
+levar uma tareia	-2
+ligar a cassete	-2
+limpar o bom nome	2
+limpar o cebo a	-2
+limpar o pó a	-2
+limpar o sarampo a	-2
+limpar o sebo a	-2
+mamar nas tetas de	-2
+manchar a imagem de	-2
+mandar bocas a	-2
+mandar bocas	-2
+mandar calar	-2
+marcar pontos	2
+matar dois coelhos com uma cajadada	2
+matar o vício	-2
+merecer o que tem	-2
+meter a carroça à frente dos bois	-2
+meter a foice em seara alheia	-2
+meter a pata na poça	-2
+meter a viola no saco	-2
+meter água	-2
+meter mãos à obra	2
+meter medo	-2
+meter o carro à frente dos bois	-2
+meter o nariz onde não é chamado	-2
+meter o pé na argola	-2
+meter o pé na poça	-2
+meter o rabinho entre as pernas	-2
+meter o rabo entre as pernas	-2
+meter os cornos a	-2
+meter os dedos pelos olhos de	-2
+meter os dedos pelos olhos dentro	-2
+meter os patins a	-2
+meter os pés pelas mãos	-2
+meter uma cunha	-2
+meter-se às cavalitas de	-2
+meter-se na alheta	-2
+meter-se na boca do lobo	-2
+meter-se numa embrulhada	-2
+meter-se onde não é chamado	-2
+misturar alhos com bugalhos	-2
+morder a língua	-2
+morder o isco	-2
+morrer de pé	-2
+morrer na praia	-2
+mostrar a verdadeira face	-2
+mostrar atitude	2
+mostrar dificuldades	-2
+mudar as regras a meio do jogo	-2
+mudar de ideias como quem muda de camisa	-2
+não acertar uma	-2
+não dar uma para a caixa	-2
+não dizer ai nem ui	-2
+não dizer coisa com coisa	-2
+não dizer nada de jeito	-2
+não estar em si	-2
+não fazer a ponta de um corno	-2
+não gostar de ouvir as verdades	-2
+não interessar a ninguém	-2
+não mexer uma palha	-2
+não morrer de amores por	-2
+não olhar a meios para atingir os fins	-2
+não olhar a meios	-2
+não perceber patavina	-2
+não saber o que dizer	-2
+não saber o que quer	-2
+não saber onde se meteu	-2
+não saber patavina	-2
+não sair da cepa torta	-2
+não se aprender nada com	-2
+não se mexer	-2
+não se sair mal	2
+não ser carne nem peixe	-2
+não ser levado a sério	-2
+não ser peixe nem carne	-2
+não ter argumentos	-2
+não ter nada na cabeça	-2
+não ter nada nos miolos	-2
+não ter onde cair morto	-2
+não ter papas na língua	2
+não ter pedalada	-2
+não ter razão	-2
+não ter um pingo de vergonha	-2
+não ter um tostão	-2
+não ter vergonha na cara	-2
+não ter vergonha nenhuma	-2
+não valer nada	-2
+não ver um boi à frente dos olhos	-2
+não ver um boi	-2
+não ver um palmo à frente do nariz	-2
+não virar a cara	2
+nascer com o cu virado para a lua	2
+ocultar a verdade	-2
+olhar nos olhos	2
+ouvir das boas	-2
+ouvir poucas mas boas	-2
+pagar caro	-2
+pagar favores a	-2
+pagar um favor a	-2
+partir o coração a	-2
+passar a batata quente a	-2
+passar à história	-2
+passar a perna a	-2
+passar cheques em branco	-2
+passar desta para melhor	-2
+passar dos limites	-2
+passar fome	-2
+passar por dificuldades	-2
+pendurar as botas	-2
+perder a cabeça	-2
+perder a compostura	-2
+perder a postura	-2
+perder a razão	-2
+perder as estribeiras	-2
+perder o juízo	-2
+perder o norte	-2
+perder o pio	-2
+perder os sentidos	-2
+perder terreno	-2
+pisar na bola	-2
+pisar o risco	-2
+precisar de comer farinha maizena	-2
+pregar aos peixes	-2
+prometer mundos e fundos	-2
+quebrar a promessa eleitoral	-2
+quebrar a promessa	-2
+quebrar as regras do jogo	-2
+quebrar as regras	-2
+queimar tempo	-2
+querer poleiro	-2
+querer tacho	-2
+renascer das cinzas	2
+saber separar as águas	2
+sacudir a água do capote	-2
+sair de cabeça erguida	2
+sair de mãos a abanar	-2
+sair do armário	2
+sair melhor do que a encomenda	-2
+sair o tiro pela culatra	-2
+sair-se bem	2
+sair-se mal	-2
+saltar para o poleiro	-2
+salvar a honra do convento	2
+seguir o caminho errado	-2
+sentir dor de corno	-2
+sentir dor de cotovelo	-2
+sentir-se nas nuvens	2
+ser culpa de	-2
+ser do contra	-2
+ser do mesmo saco	-2
+ser farinha do mesmo saco	-2
+ser mau como as cobras	-2
+ser melhor do que a encomenda	-2
+ser um homem às direitas	2
+ser um zero à esquerda	-2
+ser uma bela prenda	-2
+ser uma cópia mal feita	-2
+ser uma cópia mal produzida	-2
+ser vítima de si próprio	-2
+subir nas sondagens	2
+ter a cabeça em água	-2
+ter a cabeça no lugar	2
+ter a consciência pesada	-2
+ter a corda ao pescoço	-2
+ter a faca e o queijo na mão	2
+ter a lágrima ao canto do olho	-2
+ter a razão do seu lado	2
+ter a vida facilitada	2
+ter as costas largas	2
+ter as costas quentes	-2
+ter as horas contadas	-2
+ter boa consciência	2
+ter culpas no cartório	-2
+ter de comer farinha maizena	-2
+ter dois palmos de testa	2
+ter dor de corno	-2
+ter dor de cotovelo	-2
+ter falta de chá	-2
+ter ideias	2
+ter má consciência	-2
+ter macacos na cabeça	-2
+ter macacos no sótão	-2
+ter macaquinhos na cabeça	-2
+ter macaquinhos no sótão	-2
+ter mais olhos que barriga	-2
+ter mau perder	-2
+ter memória curta	-2
+ter o nariz empinado	-2
+ter o pavio curto	-2
+ter o rei na barriga	-2
+ter os dias contados	-2
+ter os pés assentes no chão	2
+ter os pés bem assentes na terra	2
+ter sentido de justiça	-2
+ter sentido de oportunidade	-2
+ter sentido de responsabilidade	-2
+ter um aperto no coração	-2
+ter uma grande cara de pau	-2
+ter uma grande lata	-2
+tirar a água do capote	-2
+tirar nabos da púcara	-2
+tirar o cavalinho da chuva	-2
+tirar o cavalo da chuva	-2
+tirar partido da situação	-2
+tirar proveito eleitoral	-2
+tomar conta do jogo	2
+tomar partido de	2
+tomar um banho de água fria	-2
+torcer o nariz	-2
+torcer por	2
+trazer água no bico	-2
+trazer nas palminhas das mãos	-2
+trazer o diabo no corpo	-2
+trazer o diabo no ventre	-2
+trazer o rei na barriga	-2
+trocar alhos por bogalhos	-2
+trocar os pés pelas mãos	-2
+trocar-se todo	-2
+vender banha da cobra	-2
+vender gato por lebre	-2
+ver a luz ao fundo do túnel	2
+ver a vida a andar para trás	-2
+ver a vidinha a andar para trás	-2
+ver com olhos de ver	2
+virar a cabeça a	-2
+virar a casaca	-2
+virar as costas a	-2
+virar o bico ao prego	-2
+voltar à cepa torta	-2
+voltar as costas a	-2
+voltar com a palavra atrás	-2
+votar contra	-2
