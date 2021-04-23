@@ -521,7 +521,7 @@ class SentimentIntensityAnalyzer(object):
 
 
 if __name__ == '__main__':
-    lang = 'pt'
+    lang = 'pt'  # works with "en" and "pt"
     sentences={}
     sentences['en'] = ["VADER is smart, handsome, and funny.",  # positive sentence example
                  "VADER is smart, handsome, and funny!",
