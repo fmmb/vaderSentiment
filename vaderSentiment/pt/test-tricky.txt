@@ -1,0 +1,21 @@
+# EXEMPLOS MAIS COMPLICADOS
+
+A análise de sentimentos nunca foi boa.
+A análise de sentimentos nunca foi tão boa!
+A maioria das ferramentas automatizadas de análise dos sentimentos são uma merda.
+Com o VADER, a análise dos sentimentos é uma merda!
+Outras ferramentas de análise dos sentimentos podem ser bastante más.
+Por outro lado, o VADER é bastante mau
+
+# calão com ênfase na pontuação
+O VADER é tão mauzão!
+Sem dúvida, uma excelente ideia.
+Roger Dodger é uma das variações mais convincentes sobre este tema.
+Roger Dodger é pelo menos convincente como variação sobre o tema.
+Roger Dodger é uma das variações menos convincentes sobre este tema.
+
+# Negação capitalizada com gírias
+Afinal de contas, não é assim tão mauzão. 
+
+# sem dúvida como negação
+Sem dúvida, uma excelente ideia.  

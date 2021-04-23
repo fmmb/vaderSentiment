@@ -1,0 +1,33 @@
+# exemplo de uma frase positiva
+VADER é inteligente, bonito e engraçado
+O VADER é esperto, bonito e engraçado
+O VADER é muito esperto, bonito e engraçado
+
+# ênfase para ALLCAPS tratado
+VADER é MUITO ESPERTO, bonito, e divertido
+VADER é MUITO INTELIGENTE, bonito, e DIVERTIDO!!!
+VADER é MUITO INTELIGENTE, bonito, e SUPER ENGRAÇADO!!!
+
+# exemplo de frase de negação
+VADER não é inteligente, bonito, nem engraçado
+
+# frase positiva
+O livro era bom
+
+# negou a frase negativa com contracção
+Pelo menos não é um livro horrível
+O livro era apenas do tipo bom.
+O enredo foi bom, mas as personagens eram péssimas e o diálogo não era excelente.
+
+# calão negativo com ênfase na capitalização
+Hoje está de chuva!
+Hoje está mau! Mas vou sobreviver, lol
+
+# emoticons handled
+Assegura-te de que :) ou :D hoje! 
+
+# emojis tratados
+Apanhar emoji utf-8 tais como 💘 e 💋 e 😁 
+
+# Negação capitalizada
+Nada mau, não é ? 

@@ -1,0 +1,22 @@
+# TRICKY SENTENCES
+# ------------------------
+
+Sentiment analysis has never been good.
+Sentiment analysis has never been this good!
+Most automated sentiment analysis tools are shit.
+With VADER, sentiment analysis is the shit!
+Other sentiment analysis tools can be quite bad.
+On the other hand, VADER is quite bad ass
+
+# slang with punctuation emphasis
+VADER is such a badass!
+Without a doubt, excellent idea.
+Roger Dodger is one of the most compelling variations on this theme.
+Roger Dodger is at least compelling as a variation on the theme.
+Roger Dodger is one of the least compelling variations on this theme.
+
+# Capitalized negation with slang
+Not such a badass after all. 
+
+# without {any} doubt as negation
+Without a doubt, an excellent idea.  

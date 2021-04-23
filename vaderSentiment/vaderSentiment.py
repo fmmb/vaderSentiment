@@ -55,31 +55,35 @@ def allcap_differential(words):
 class LanguageKB():
     
     def __init__(self, language, B_INCR, B_DECR, C_INCR, N_SCALAR):
-        
         assert(language in ["en", "pt"])
+        
         self.B_INCR = B_INCR
         self.C_INCR = C_INCR
         self.N_SCALAR = N_SCALAR
         self.B_DECR = B_DECR
         self.language = language
         
-        self.NEGATE = self.read_negate(f"./negate.{language}.txt")
+        self.NEGATE = self.read_negate(f"./{language}/negate.txt")
         # booster/dampener 'intensifiers' or 'degree adverbs'
         # http://en.wiktionary.org/wiki/Category:English_degree_adverbs
-        self.BOOSTER_DICT = self.read_booster_dict(f"./booster-dict.{language}.txt", B_INCR, B_DECR)
+        self.BOOSTER_DICT = self.read_booster_dict(f"./{language}/booster-dict.txt", B_INCR, B_DECR)
         # check for sentiment laden idioms that do not contain lexicon words (future work, not yet implemented)
-        self.SENTIMENT_LADEN_IDIOMS = self.read_idioms(f"./idioms.{language}.txt")
+        self.SENTIMENT_LADEN_IDIOMS = self.read_idioms(f"./{language}/idioms.txt")
         # check for special case idioms and phrases containing lexicon words
-        self.SPECIAL_CASES = self.read_special_cases(f"./special-cases.{language}.txt")
-        self.LEXICON = self.read_lexicon(f"./vader_lexicon.{language}.txt")
+        self.SPECIAL_CASES = self.read_special_cases(f"./{language}/special-cases.txt")
+        self.LEXICON = self.read_lexicon(f"./{language}/vader_lexicon.txt")
         self.EMOJIS = self.read_emoji("./emoji_utf8_lexicon.txt")
             
         if language == "en":
-            self.WORD = {'no':'no', 'kind':'kind', 'of':'of', 'at':'at', 'least':'least', 'very':'very', 'but':'but', 
-                 'never':'never', 'so': 'so', 'this': 'this', 'without':'without', 'doubt':'doubt', 'or':'or', 'nor':'nor'}
+            self.WORD = {'no':'no', 'kind':'kind', 'of':'of', 
+                         'at':'at', 'least':'least', 'very':'very', 'but':'but', 
+                         'never':'never', 'so': 'so', 'this': 'this', 
+                         'without':'without', 'doubt':'doubt', 'or':'or', 'nor':'nor'}
         elif language == "pt":
-            self.WORD = {'no':'não', 'kind':'tipo', 'of':'de', 'at':'pelo', 'least':'menos', 'very':'muito', 'but':'mas', 
-                 'never':'nunca', 'so': 'assim', 'this': 'isto', 'without':'sem', 'doubt':'dúvida', 'or':'ou', 'nor': 'nem'}
+            self.WORD = {'no':'não', 'kind':'tipo', 'of':'de', 
+                         'at':'pelo', 'least':'menos', 'very':'muito', 'but':'mas', 
+                         'never':'nunca', 'so': 'assim', 'this': 'isto', 
+                         'without':'sem', 'doubt':'dúvida', 'or':'ou', 'nor': 'nem'}
             
     @staticmethod
     def read_lexicon(filename):
@@ -519,54 +523,15 @@ class SentimentIntensityAnalyzer(object):
 
         return sentiment_dict
 
+    
+def read_examples(filename):
+    with open(filename, encoding="utf-8") as myfile:
+        return [line.strip() for line in myfile if not line.startswith("#") and len(line.strip()) > 0]
 
 if __name__ == '__main__':
-    lang = 'pt'  # works with "en" and "pt"
-    sentences={}
-    sentences['en'] = ["VADER is smart, handsome, and funny.",  # positive sentence example
-                 "VADER is smart, handsome, and funny!",
-                 # punctuation emphasis handled correctly (sentiment intensity adjusted)
-                 "VADER is very smart, handsome, and funny.",
-                 # booster words handled correctly (sentiment intensity adjusted)
-                 "VADER is VERY SMART, handsome, and FUNNY.",  # emphasis for ALLCAPS handled
-                 "VADER is VERY SMART, handsome, and FUNNY!!!",
-                 # combination of signals - VADER appropriately adjusts intensity
-                 "VADER is VERY SMART, uber handsome, and FRIGGIN FUNNY!!!",
-                 # booster words & punctuation make this close to ceiling for score
-                 "VADER is not smart, handsome, nor funny.",  # negation sentence example
-                 "The book was good.",  # positive sentence
-                 "At least it isn't a horrible book.",  # negated negative sentence with contraction
-                 "The book was only kind of good.",
-                 # qualified positive sentence is handled correctly (intensity adjusted)
-                 "The plot was good, but the characters are uncompelling and the dialog is not great.",
-                 # mixed negation sentence
-                 "Today SUX!",  # negative slang with capitalization emphasis
-                 "Today only kinda sux! But I'll get by, lol",
-                 # mixed sentiment example with slang and constrastive conjunction "but"
-                 "Make sure you :) or :D today!",  # emoticons handled
-                 "Catch utf-8 emoji such as 💘 and 💋 and 😁",  # emojis handled
-                 "Not bad at all"  # Capitalized negation
-                 ]
-    sentences['pt'] = ["VADER é inteligente, bonito e engraçado", # exemplo de uma frase positiva
-                "O VADER é esperto, bonito e engraçado",
-                "O VADER é muito esperto, bonito e engraçado",
-                "VADER é MUITO ESPERTO, bonito, e divertido", # ênfase para ALLCAPS tratado
-                "VADER é MUITO INTELIGENTE, bonito, e DIVERTIDO!!!",
-                "VADER é MUITO INTELIGENTE, bonito, e SUPER ENGRAÇADO!!!",
-                "VADER não é inteligente, bonito, nem engraçado", # exemplo de frase de negação
-                "O livro era bom", # frase positiva
-                "Pelo menos não é um livro horrível", # negou a frase negativa com contracção
-                "O livro era apenas do tipo bom.",
-                "O enredo foi bom, mas as personagens eram péssimas e o diálogo não era excelente.",
-                "Hoje está de chuva!", # calão negativo com ênfase na capitalização
-                "Hoje está mauzito! Mas eu vou sobreviver, lol",
-                "Assegura-te de que :) ou :D hoje!", # emoticons handled
-                "Apanhar emoji utf-8 tais como 💘 e 💋 e 😁", # emojis tratados
-                "Nada mau, não é ?" # Negação capitalizada
-                ]
-                                                            
+    language = 'pt'  # works with "en" and "pt"
 
-    analyzer = SentimentIntensityAnalyzer(lang)
+    analyzer = SentimentIntensityAnalyzer(language)
 
     print("----------------------------------------------------")
     print(" - Analyze typical example cases, including handling of:")
@@ -581,9 +546,12 @@ if __name__ == '__main__':
     print("  -- utf-8 encoded emojis such as 💘 and 💋 and 😁")
     print("  -- sentiment laden slang words (e.g., 'sux')")
     print("  -- sentiment laden initialisms and acronyms (for example: 'lol') \n")
-    for sentence in sentences[lang]:
+    
+    sentences = read_examples(f"./{language}/test-examples.txt")                                                        
+    for sentence in sentences:
         vs = analyzer.polarity_scores(sentence)
         print("{:-<65} {}".format(sentence, str(vs)))
+        
     print("----------------------------------------------------")
     print(" - About the scoring: ")
     print("""  -- The 'compound' score is computed by summing the valence scores of each word in the lexicon, adjusted
@@ -595,27 +563,16 @@ if __name__ == '__main__':
      you want multidimensional measures of sentiment for a given sentence.""")
     print("----------------------------------------------------")
 
-    input("\nPress Enter to continue the demo...\n")  # for DEMO purposes...
+    #input("\nPress Enter to continue the demo...\n")  # for DEMO purposes...
 
-    tricky_sentences = ["Sentiment analysis has never been good.",
-                        "Sentiment analysis has never been this good!",
-                        "Most automated sentiment analysis tools are shit.",
-                        "With VADER, sentiment analysis is the shit!",
-                        "Other sentiment analysis tools can be quite bad.",
-                        "On the other hand, VADER is quite bad ass",
-                        "VADER is such a badass!",  # slang with punctuation emphasis
-                        "Without a doubt, excellent idea.",
-                        "Roger Dodger is one of the most compelling variations on this theme.",
-                        "Roger Dodger is at least compelling as a variation on the theme.",
-                        "Roger Dodger is one of the least compelling variations on this theme.",
-                        "Not such a badass after all.",  # Capitalized negation with slang
-                        "Without a doubt, an excellent idea."  # "without {any} doubt" as negation
-                        ]
+
     print("----------------------------------------------------")
     print(" - Analyze examples of tricky sentences that cause trouble to other sentiment analysis tools.")
     print("  -- special case idioms - e.g., 'never good' vs 'never this good', or 'bad' vs 'bad ass'.")
     print("  -- special uses of 'least' as negation versus comparison \n")
-    for sentence in tricky_sentences:
+ 
+    sentences = read_examples(f"./{language}/test-tricky.txt")                                                        
+    for sentence in sentences:
         vs = analyzer.polarity_scores(sentence)
         print("{:-<69} {}".format(sentence, str(vs)))
     print("----------------------------------------------------")
@@ -646,15 +603,7 @@ if __name__ == '__main__':
 
     print("----------------------------------------------------")
     print(" - Analyze sentiment of IMAGES/VIDEO data based on annotation 'tags' or image labels. \n")
-    conceptList = ["balloons", "cake", "candles", "happy birthday", "friends", "laughing", "smiling", "party"]
-    conceptSentiments = 0.0
-    for concept in conceptList:
-        vs = analyzer.polarity_scores(concept)
-        print("{:-<15} {}".format(concept, str(vs['compound'])))
-        conceptSentiments += vs["compound"]
-    print("AVERAGE SENTIMENT OF TAGS/LABELS: \t" + str(round(conceptSentiments / len(conceptList), 4)))
-    print("\t")
-    conceptList = ["riot", "fire", "fight", "blood", "mob", "war", "police", "tear gas"]
+    conceptList = read_examples(f"./{language}/test-words.txt")
     conceptSentiments = 0.0
     for concept in conceptList:
         vs = analyzer.polarity_scores(concept)
