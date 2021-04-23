@@ -1,0 +1,12 @@
+cut the mustard	2
+hand to mouth	-2
+back handed	-2
+blow smoke	-2
+blowing smoke	-2
+upper hand	1
+break a leg	2
+cooking with gas	2
+in the black	2
+in the red	-2
+on the ball	2
+under the weather	-2

@@ -4,6 +4,8 @@
 # Thanks to Ewan Klein and Pierpaolo Pantone for bringing VADER into NLTK. Those modifications were awesome.
 # For license information, see LICENSE.TXT
 
+# Adapted for Portuguese by Fernando Batista (fernando.batista.pt @ gmail.com)
+
 """
 If you use the VADER sentiment analysis tools, please cite:
 Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for
@@ -20,89 +22,6 @@ from itertools import product
 from inspect import getsourcefile
 from io import open
 
-# ##Constants##
-
-# (empirically derived mean sentiment intensity rating increase for booster words)
-B_INCR = 0.293
-B_DECR = -0.293
-
-# (empirically derived mean sentiment intensity rating increase for using ALLCAPs to emphasize a word)
-C_INCR = 0.733
-N_SCALAR = -0.74
-
-NEGATE = \
-    ["aint", "arent", "cannot", "cant", "couldnt", "darent", "didnt", "doesnt",
-     "ain't", "aren't", "can't", "couldn't", "daren't", "didn't", "doesn't",
-     "dont", "hadnt", "hasnt", "havent", "isnt", "mightnt", "mustnt", "neither",
-     "don't", "hadn't", "hasn't", "haven't", "isn't", "mightn't", "mustn't",
-     "neednt", "needn't", "never", "none", "nope", "nor", "not", "nothing", "nowhere",
-     "oughtnt", "shant", "shouldnt", "uhuh", "wasnt", "werent",
-     "oughtn't", "shan't", "shouldn't", "uh-uh", "wasn't", "weren't",
-     "without", "wont", "wouldnt", "won't", "wouldn't", "rarely", "seldom", "despite"]
-
-# booster/dampener 'intensifiers' or 'degree adverbs'
-# http://en.wiktionary.org/wiki/Category:English_degree_adverbs
-
-BOOSTER_DICT = \
-    {"absolutely": B_INCR, "amazingly": B_INCR, "awfully": B_INCR, 
-     "completely": B_INCR, "considerable": B_INCR, "considerably": B_INCR,
-     "decidedly": B_INCR, "deeply": B_INCR, "effing": B_INCR, "enormous": B_INCR, "enormously": B_INCR,
-     "entirely": B_INCR, "especially": B_INCR, "exceptional": B_INCR, "exceptionally": B_INCR, 
-     "extreme": B_INCR, "extremely": B_INCR,
-     "fabulously": B_INCR, "flipping": B_INCR, "flippin": B_INCR, "frackin": B_INCR, "fracking": B_INCR,
-     "fricking": B_INCR, "frickin": B_INCR, "frigging": B_INCR, "friggin": B_INCR, "fully": B_INCR, 
-     "fuckin": B_INCR, "fucking": B_INCR, "fuggin": B_INCR, "fugging": B_INCR,
-     "greatly": B_INCR, "hella": B_INCR, "highly": B_INCR, "hugely": B_INCR, 
-     "incredible": B_INCR, "incredibly": B_INCR, "intensely": B_INCR, 
-     "major": B_INCR, "majorly": B_INCR, "more": B_INCR, "most": B_INCR, "particularly": B_INCR,
-     "purely": B_INCR, "quite": B_INCR, "really": B_INCR, "remarkably": B_INCR,
-     "so": B_INCR, "substantially": B_INCR,
-     "thoroughly": B_INCR, "total": B_INCR, "totally": B_INCR, "tremendous": B_INCR, "tremendously": B_INCR,
-     "uber": B_INCR, "unbelievably": B_INCR, "unusually": B_INCR, "utter": B_INCR, "utterly": B_INCR,
-     "very": B_INCR,
-     "almost": B_DECR, "barely": B_DECR, "hardly": B_DECR, "just enough": B_DECR,
-     "kind of": B_DECR, "kinda": B_DECR, "kindof": B_DECR, "kind-of": B_DECR,
-     "less": B_DECR, "little": B_DECR, "marginal": B_DECR, "marginally": B_DECR,
-     "occasional": B_DECR, "occasionally": B_DECR, "partly": B_DECR,
-     "scarce": B_DECR, "scarcely": B_DECR, "slight": B_DECR, "slightly": B_DECR, "somewhat": B_DECR,
-     "sort of": B_DECR, "sorta": B_DECR, "sortof": B_DECR, "sort-of": B_DECR}
-
-# check for sentiment laden idioms that do not contain lexicon words (future work, not yet implemented)
-SENTIMENT_LADEN_IDIOMS = {"cut the mustard": 2, "hand to mouth": -2,
-                          "back handed": -2, "blow smoke": -2, "blowing smoke": -2,
-                          "upper hand": 1, "break a leg": 2,
-                          "cooking with gas": 2, "in the black": 2, "in the red": -2,
-                          "on the ball": 2, "under the weather": -2}
-
-# check for special case idioms and phrases containing lexicon words
-SPECIAL_CASES = {"the shit": 3, "the bomb": 3, "bad ass": 1.5, "badass": 1.5, "bus stop": 0.0,
-                 "yeah right": -2, "kiss of death": -1.5, "to die for": 3, 
-                 "beating heart": 3.1, "broken heart": -2.9 }
-
-
-# #Static methods# #
-
-def negated(input_words, include_nt=True):
-    """
-    Determine if input contains negation words
-    """
-    input_words = [str(w).lower() for w in input_words]
-    neg_words = []
-    neg_words.extend(NEGATE)
-    for word in neg_words:
-        if word in input_words:
-            return True
-    if include_nt:
-        for word in input_words:
-            if "n't" in word:
-                return True
-    '''if "least" in input_words:
-        i = input_words.index("least")
-        if i > 0 and input_words[i - 1] != "at":
-            return True'''
-    return False
-
-
 def normalize(score, alpha=15):
     """
     Normalize the score to be between -1 and 1 using an alpha that
@@ -115,7 +34,6 @@ def normalize(score, alpha=15):
         return 1.0
     else:
         return norm_score
-
 
 def allcap_differential(words):
     """
@@ -134,25 +52,143 @@ def allcap_differential(words):
     return is_different
 
 
-def scalar_inc_dec(word, valence, is_cap_diff):
-    """
-    Check if the preceding words increase, decrease, or negate/nullify the
-    valence
-    """
-    scalar = 0.0
-    word_lower = word.lower()
-    if word_lower in BOOSTER_DICT:
-        scalar = BOOSTER_DICT[word_lower]
-        if valence < 0:
-            scalar *= -1
-        # check if booster/dampener word is in ALLCAPS (while others aren't)
-        if word.isupper() and is_cap_diff:
-            if valence > 0:
-                scalar += C_INCR
-            else:
-                scalar -= C_INCR
-    return scalar
+class LanguageKB():
+    
+    def __init__(self, language, B_INCR, B_DECR, C_INCR, N_SCALAR):
+        
+        assert(language in ["en", "pt"])
+        self.B_INCR = B_INCR
+        self.C_INCR = C_INCR
+        self.N_SCALAR = N_SCALAR
+        self.B_DECR = B_DECR
+        self.language = language
+        
+        self.NEGATE = self.read_negate(f"./negate.{language}.txt")
+        # booster/dampener 'intensifiers' or 'degree adverbs'
+        # http://en.wiktionary.org/wiki/Category:English_degree_adverbs
+        self.BOOSTER_DICT = self.read_booster_dict(f"./booster-dict.{language}.txt", B_INCR, B_DECR)
+        # check for sentiment laden idioms that do not contain lexicon words (future work, not yet implemented)
+        self.SENTIMENT_LADEN_IDIOMS = self.read_idioms(f"./idioms.{language}.txt")
+        # check for special case idioms and phrases containing lexicon words
+        self.SPECIAL_CASES = self.read_special_cases(f"./special-cases.{language}.txt")
+        self.LEXICON = self.read_lexicon(f"./vader_lexicon.{language}.txt")
+        self.EMOJIS = self.read_emoji("./emoji_utf8_lexicon.txt")
+            
+        if language == "en":
+            self.WORD = {'no':'no', 'kind':'kind', 'of':'of', 'at':'at', 'least':'least', 'very':'very', 'but':'but', 
+                 'never':'never', 'so': 'so', 'this': 'this', 'without':'without', 'doubt':'doubt', 'or':'or', 'nor':'nor'}
+        elif language == "pt":
+            self.WORD = {'no':'não', 'kind':'tipo', 'of':'de', 'at':'pelo', 'least':'menos', 'very':'muito', 'but':'mas', 
+                 'never':'nunca', 'so': 'assim', 'this': 'isto', 'without':'sem', 'doubt':'dúvida', 'or':'ou', 'nor': 'nem'}
+            
+    @staticmethod
+    def read_lexicon(filename):
+        """
+        Convert lexicon file to a dictionary
+        """
+        lex_dict = {}
+        with open(filename, encoding="utf-8") as myfile:
+            for line in myfile:
+                if line.startswith("#") or len(line.strip()) == 0:
+                    continue            
+                (word, measure) = line.strip().split("\t")[0:2]
+                lex_dict[word] = float(measure)
+        return lex_dict
+    
+    @staticmethod
+    def read_emoji(filename):
+        """
+        Convert emoji lexicon file to a dictionary
+        """
+        emoji_dict = {}
+        with open(filename, encoding="utf-8") as myfile:
+            for line in myfile:
+                if line.startswith("#") or len(line.strip()) == 0:
+                    continue            
+                (emoji, description) = line.strip().split("\t")[0:2]
+                emoji_dict[emoji] = description
+        return emoji_dict
 
+    @staticmethod
+    def read_negate(filename):
+        with open(filename, encoding="utf-8") as myfile:
+            negate = [line.strip() for line in myfile]
+            return negate
+
+    @staticmethod
+    def read_booster_dict(filename, B_INCR, B_DECR):
+        booster = {}
+        with open(filename, encoding="utf-8") as myfile:
+            for line in myfile:
+                if line.startswith("#") or len(line.strip()) == 0:
+                    continue            
+                info = line.strip().split("\t")
+                if info[1] == "1":
+                    booster[info[0]] = B_INCR
+                elif info[1] == "-1":
+                    booster[info[0]] = B_DECR
+        return booster
+
+    @staticmethod
+    def read_idioms(filename):
+        idioms = {}
+        with open(filename, encoding="utf-8") as myfile:
+            for line in myfile:
+                if line.startswith("#") or len(line.strip()) == 0:
+                    continue            
+                info = line.strip().split("\t")
+                idioms[info[0]] = int(info[1])
+        return idioms
+
+    @staticmethod
+    def read_special_cases(filename):
+        scases = {}
+        with open(filename, encoding="utf-8") as myfile:
+            for line in myfile:
+                if line.startswith("#") or len(line.strip()) == 0:
+                    continue
+                info = line.strip().split("\t")
+                scases[info[0]] = float(info[1])
+        return scases
+
+    def negated(self, input_words, include_nt=True):
+        """
+        Determine if input contains negation words
+        """
+        input_words = [str(w).lower() for w in input_words]
+        neg_words = []
+        neg_words.extend(self.NEGATE)
+        for word in neg_words:
+            if word in input_words:
+                return True
+        if include_nt:
+            for word in input_words:
+                if "n't" in word:
+                    return True
+        '''if "least" in input_words:
+            i = input_words.index("least")
+            if i > 0 and input_words[i - 1] != "at":
+                return True'''
+        return False
+
+    def scalar_inc_dec(self, word, valence, is_cap_diff):
+        """
+        Check if the preceding words increase, decrease, or negate/nullify the
+        valence
+        """
+        scalar = 0.0
+        word_lower = word.lower()
+        if word_lower in self.BOOSTER_DICT:
+            scalar = self.BOOSTER_DICT[word_lower]
+            if valence < 0:
+                scalar *= -1
+            # check if booster/dampener word is in ALLCAPS (while others aren't)
+            if word.isupper() and is_cap_diff:
+                if valence > 0:
+                    scalar += self.C_INCR
+                else:
+                    scalar -= self.C_INCR
+        return scalar
 
 class SentiText(object):
     """
@@ -191,45 +227,20 @@ class SentiText(object):
         stripped = list(map(self._strip_punc_if_word, wes))
         return stripped
 
+    
 class SentimentIntensityAnalyzer(object):
     """
     Give a sentiment intensity score to sentences.
     """
 
-    def __init__(self, lexicon_file="vader_lexicon.txt", emoji_lexicon="emoji_utf8_lexicon.txt"):
-        _this_module_file_path_ = os.path.abspath(getsourcefile(lambda: 0))
-        lexicon_full_filepath = os.path.join(os.path.dirname(_this_module_file_path_), lexicon_file)
-        with codecs.open(lexicon_full_filepath, encoding='utf-8') as f:
-            self.lexicon_full_filepath = f.read()
-        self.lexicon = self.make_lex_dict()
+    def __init__(self, language = "en"):
 
-        emoji_full_filepath = os.path.join(os.path.dirname(_this_module_file_path_), emoji_lexicon)
-        with codecs.open(emoji_full_filepath, encoding='utf-8') as f:
-            self.emoji_full_filepath = f.read()
-        self.emojis = self.make_emoji_dict()
-
-    def make_lex_dict(self):
-        """
-        Convert lexicon file to a dictionary
-        """
-        lex_dict = {}
-        for line in self.lexicon_full_filepath.rstrip('\n').split('\n'):
-            if not line:
-                continue
-            (word, measure) = line.strip().split('\t')[0:2]
-            lex_dict[word] = float(measure)
-        return lex_dict
-
-    def make_emoji_dict(self):
-        """
-        Convert emoji lexicon file to a dictionary
-        """
-        emoji_dict = {}
-        for line in self.emoji_full_filepath.rstrip('\n').split('\n'):
-            (emoji, description) = line.strip().split('\t')[0:2]
-            emoji_dict[emoji] = description
-        return emoji_dict
-
+        # Constants
+        # B_INCR, B_DECR: empirically derived mean sentiment intensity rating increase for booster words
+        # C_INCR, N_SCALAR: empirically derived mean sentiment intensity rating increase for using ALLCAPs to emphasize a word
+        self.KB = LanguageKB(language, B_INCR=0.293, B_DECR=-0.293, C_INCR=0.733, N_SCALAR=-0.74)
+        
+        
     def polarity_scores(self, text):
         """
         Return a float for sentiment strength based on the input text.
@@ -240,9 +251,9 @@ class SentimentIntensityAnalyzer(object):
         text_no_emoji = ""
         prev_space = True
         for chr in text:
-            if chr in self.emojis:
+            if chr in self.KB.EMOJIS:
                 # get the textual description
-                description = self.emojis[chr]
+                description = self.KB.EMOJIS[chr]
                 if not prev_space:
                     text_no_emoji += ' '
                 text_no_emoji += description
@@ -259,11 +270,11 @@ class SentimentIntensityAnalyzer(object):
         for i, item in enumerate(words_and_emoticons):
             valence = 0
             # check for vader_lexicon words that may be used as modifiers or negations
-            if item.lower() in BOOSTER_DICT:
+            if item.lower() in self.KB.BOOSTER_DICT:
                 sentiments.append(valence)
                 continue
-            if (i < len(words_and_emoticons) - 1 and item.lower() == "kind" and
-                    words_and_emoticons[i + 1].lower() == "of"):
+            if (i < len(words_and_emoticons) - 1 and item.lower() == self.KB.WORD["kind"] and
+                    words_and_emoticons[i + 1].lower() == self.KB.WORD["of"]):
                 sentiments.append(valence)
                 continue
 
@@ -274,37 +285,38 @@ class SentimentIntensityAnalyzer(object):
         valence_dict = self.score_valence(sentiments, text)
 
         return valence_dict
-
+    
     def sentiment_valence(self, valence, sentitext, item, i, sentiments):
         is_cap_diff = sentitext.is_cap_diff
         words_and_emoticons = sentitext.words_and_emoticons
         item_lowercase = item.lower()
-        if item_lowercase in self.lexicon:
+        if item_lowercase in self.KB.LEXICON:
             # get the sentiment valence 
-            valence = self.lexicon[item_lowercase]
+            valence = self.KB.LEXICON[item_lowercase]
                 
             # check for "no" as negation for an adjacent lexicon item vs "no" as its own stand-alone lexicon item
-            if item_lowercase == "no" and i != len(words_and_emoticons)-1 and words_and_emoticons[i + 1].lower() in self.lexicon:
+            if item_lowercase == self.KB.WORD["no"] and i != len(words_and_emoticons)-1 and words_and_emoticons[i + 1].lower() in self.KB.LEXICON:
                 # don't use valence of "no" as a lexicon item. Instead set it's valence to 0.0 and negate the next item
                 valence = 0.0
-            if (i > 0 and words_and_emoticons[i - 1].lower() == "no") \
-               or (i > 1 and words_and_emoticons[i - 2].lower() == "no") \
-               or (i > 2 and words_and_emoticons[i - 3].lower() == "no" and words_and_emoticons[i - 1].lower() in ["or", "nor"] ):
-                valence = self.lexicon[item_lowercase] * N_SCALAR
+            if (i > 0 and words_and_emoticons[i - 1].lower() == self.KB.WORD["no"]) \
+               or (i > 1 and words_and_emoticons[i - 2].lower() == self.KB.WORD["no"]) \
+               or (i > 2 and words_and_emoticons[i - 3].lower() == self.KB.WORD["no"] \
+                   and words_and_emoticons[i - 1].lower() in [self.KB.WORD["or"], self.KB.WORD["nor"]] ):
+                valence = self.KB.LEXICON[item_lowercase] * self.KB.N_SCALAR
             
             # check if sentiment laden word is in ALL CAPS (while others aren't)
             if item.isupper() and is_cap_diff:
                 if valence > 0:
-                    valence += C_INCR
+                    valence += self.KB.C_INCR
                 else:
-                    valence -= C_INCR
+                    valence -= self.KB.C_INCR
 
             for start_i in range(0, 3):
                 # dampen the scalar modifier of preceding words and emoticons
                 # (excluding the ones that immediately preceed the item) based
                 # on their distance from the current item.
-                if i > start_i and words_and_emoticons[i - (start_i + 1)].lower() not in self.lexicon:
-                    s = scalar_inc_dec(words_and_emoticons[i - (start_i + 1)], valence, is_cap_diff)
+                if i > start_i and words_and_emoticons[i - (start_i + 1)].lower() not in self.KB.LEXICON:
+                    s = self.KB.scalar_inc_dec(words_and_emoticons[i - (start_i + 1)], valence, is_cap_diff)
                     if start_i == 1 and s != 0:
                         s = s * 0.95
                     if start_i == 2 and s != 0:
@@ -320,21 +332,20 @@ class SentimentIntensityAnalyzer(object):
 
     def _least_check(self, valence, words_and_emoticons, i):
         # check for negation case using "least"
-        if i > 1 and words_and_emoticons[i - 1].lower() not in self.lexicon \
-                and words_and_emoticons[i - 1].lower() == "least":
-            if words_and_emoticons[i - 2].lower() != "at" and words_and_emoticons[i - 2].lower() != "very":
-                valence = valence * N_SCALAR
-        elif i > 0 and words_and_emoticons[i - 1].lower() not in self.lexicon \
-                and words_and_emoticons[i - 1].lower() == "least":
-            valence = valence * N_SCALAR
+        if i > 1 and words_and_emoticons[i - 1].lower() not in self.KB.LEXICON \
+                and words_and_emoticons[i - 1].lower() == self.KB.WORD["least"]:
+            if words_and_emoticons[i - 2].lower() != self.KB.WORD["at"] and words_and_emoticons[i - 2].lower() != self.KB.WORD["very"]:
+                valence = valence * self.KB.N_SCALAR
+        elif i > 0 and words_and_emoticons[i - 1].lower() not in self.KB.LEXICON \
+                and words_and_emoticons[i - 1].lower() == self.KB.WORD["least"]:
+            valence = valence * self.KB.N_SCALAR
         return valence
 
-    @staticmethod
-    def _but_check(words_and_emoticons, sentiments):
+    def _but_check(self, words_and_emoticons, sentiments):
         # check for modification in sentiment due to contrastive conjunction 'but'
         words_and_emoticons_lower = [str(w).lower() for w in words_and_emoticons]
-        if 'but' in words_and_emoticons_lower:
-            bi = words_and_emoticons_lower.index('but')
+        if self.KB.WORD['but'] in words_and_emoticons_lower:
+            bi = words_and_emoticons_lower.index(self.KB.WORD['but'])
             for sentiment in sentiments:
                 si = sentiments.index(sentiment)
                 if si < bi:
@@ -345,8 +356,7 @@ class SentimentIntensityAnalyzer(object):
                     sentiments.insert(si, sentiment * 1.5)
         return sentiments
 
-    @staticmethod
-    def _special_idioms_check(valence, words_and_emoticons, i):
+    def _special_idioms_check(self, valence, words_and_emoticons, i):
         words_and_emoticons_lower = [str(w).lower() for w in words_and_emoticons]
         onezero = "{0} {1}".format(words_and_emoticons_lower[i - 1], words_and_emoticons_lower[i])
 
@@ -363,25 +373,25 @@ class SentimentIntensityAnalyzer(object):
         sequences = [onezero, twoonezero, twoone, threetwoone, threetwo]
 
         for seq in sequences:
-            if seq in SPECIAL_CASES:
-                valence = SPECIAL_CASES[seq]
+            if seq in self.KB.SPECIAL_CASES:
+                valence = self.KB.SPECIAL_CASES[seq]
                 break
 
         if len(words_and_emoticons_lower) - 1 > i:
             zeroone = "{0} {1}".format(words_and_emoticons_lower[i], words_and_emoticons_lower[i + 1])
-            if zeroone in SPECIAL_CASES:
-                valence = SPECIAL_CASES[zeroone]
+            if zeroone in self.KB.SPECIAL_CASES:
+                valence = self.KB.SPECIAL_CASES[zeroone]
         if len(words_and_emoticons_lower) - 1 > i + 1:
             zeroonetwo = "{0} {1} {2}".format(words_and_emoticons_lower[i], words_and_emoticons_lower[i + 1],
                                               words_and_emoticons_lower[i + 2])
-            if zeroonetwo in SPECIAL_CASES:
-                valence = SPECIAL_CASES[zeroonetwo]
+            if zeroonetwo in self.KB.SPECIAL_CASES:
+                valence = self.KB.SPECIAL_CASES[zeroonetwo]
 
         # check for booster/dampener bi-grams such as 'sort of' or 'kind of'
         n_grams = [threetwoone, threetwo, twoone]
         for n_gram in n_grams:
-            if n_gram in BOOSTER_DICT:
-                valence = valence + BOOSTER_DICT[n_gram]
+            if n_gram in self.KB.BOOSTER_DICT:
+                valence = valence + self.KB.BOOSTER_DICT[n_gram]
         return valence
 
     @staticmethod
@@ -389,41 +399,39 @@ class SentimentIntensityAnalyzer(object):
         # Future Work
         # check for sentiment laden idioms that don't contain a lexicon word
         idioms_valences = []
-        for idiom in SENTIMENT_LADEN_IDIOMS:
+        for idiom in self.KB.SENTIMENT_LADEN_IDIOMS:
             if idiom in senti_text_lower:
                 print(idiom, senti_text_lower)
-                valence = SENTIMENT_LADEN_IDIOMS[idiom]
+                valence = self.KB.SENTIMENT_LADEN_IDIOMS[idiom]
                 idioms_valences.append(valence)
         if len(idioms_valences) > 0:
             valence = sum(idioms_valences) / float(len(idioms_valences))
         return valence
 
-    @staticmethod
-    def _negation_check(valence, words_and_emoticons, start_i, i):
+    def _negation_check(self, valence, words_and_emoticons, start_i, i):
         words_and_emoticons_lower = [str(w).lower() for w in words_and_emoticons]
         if start_i == 0:
-            if negated([words_and_emoticons_lower[i - (start_i + 1)]]):  # 1 word preceding lexicon word (w/o stopwords)
-                valence = valence * N_SCALAR
+            if self.KB.negated([words_and_emoticons_lower[i - (start_i + 1)]]):  # 1 word preceding lexicon word (w/o stopwords)
+                valence = valence * self.KB.N_SCALAR
         if start_i == 1:
-            if words_and_emoticons_lower[i - 2] == "never" and \
-                    (words_and_emoticons_lower[i - 1] == "so" or
-                     words_and_emoticons_lower[i - 1] == "this"):
+            if words_and_emoticons_lower[i - 2] == self.KB.WORD["never"] and \
+                    (words_and_emoticons_lower[i - 1] in [self.KB.WORD["so"], self.KB.WORD["this"]]):
                 valence = valence * 1.25
-            elif words_and_emoticons_lower[i - 2] == "without" and \
-                    words_and_emoticons_lower[i - 1] == "doubt":
+            elif words_and_emoticons_lower[i - 2] == self.KB.WORD["without"] and \
+                    words_and_emoticons_lower[i - 1] == self.KB.WORD["doubt"]:
                 valence = valence
-            elif negated([words_and_emoticons_lower[i - (start_i + 1)]]):  # 2 words preceding the lexicon word position
-                valence = valence * N_SCALAR
+            elif self.KB.negated([words_and_emoticons_lower[i - (start_i + 1)]]):  # 2 words preceding the lexicon word position
+                valence = valence * self.KB.N_SCALAR
         if start_i == 2:
-            if words_and_emoticons_lower[i - 3] == "never" and \
-                    (words_and_emoticons_lower[i - 2] == "so" or words_and_emoticons_lower[i - 2] == "this") or \
-                    (words_and_emoticons_lower[i - 1] == "so" or words_and_emoticons_lower[i - 1] == "this"):
+            if words_and_emoticons_lower[i - 3] == self.KB.WORD["never"] and \
+                    (words_and_emoticons_lower[i - 2] in [self.KB.WORD["so"], self.KB.WORD["this"]]) or \
+                    (words_and_emoticons_lower[i - 1] in [self.KB.WORD["so"], self.KB.WORD["this"]]):
                 valence = valence * 1.25
-            elif words_and_emoticons_lower[i - 3] == "without" and \
-                    (words_and_emoticons_lower[i - 2] == "doubt" or words_and_emoticons_lower[i - 1] == "doubt"):
+            elif words_and_emoticons_lower[i - 3] == self.KB.WORD["without"] and \
+                    (words_and_emoticons_lower[i - 2] == self.KB.WORD["doubt"] or words_and_emoticons_lower[i - 1] == self.KB.WORD["doubt"]):
                 valence = valence
-            elif negated([words_and_emoticons_lower[i - (start_i + 1)]]):  # 3 words preceding the lexicon word position
-                valence = valence * N_SCALAR
+            elif self.KB.negated([words_and_emoticons_lower[i - (start_i + 1)]]):  # 3 words preceding the lexicon word position
+                valence = valence * self.KB.N_SCALAR
         return valence
 
     def _punctuation_emphasis(self, text):
@@ -513,8 +521,9 @@ class SentimentIntensityAnalyzer(object):
 
 
 if __name__ == '__main__':
-    # --- examples -------
-    sentences = ["VADER is smart, handsome, and funny.",  # positive sentence example
+    lang = 'pt'
+    sentences={}
+    sentences['en'] = ["VADER is smart, handsome, and funny.",  # positive sentence example
                  "VADER is smart, handsome, and funny!",
                  # punctuation emphasis handled correctly (sentiment intensity adjusted)
                  "VADER is very smart, handsome, and funny.",
@@ -538,8 +547,26 @@ if __name__ == '__main__':
                  "Catch utf-8 emoji such as 💘 and 💋 and 😁",  # emojis handled
                  "Not bad at all"  # Capitalized negation
                  ]
+    sentences['pt'] = ["VADER é inteligente, bonito e engraçado", # exemplo de uma frase positiva
+                "O VADER é esperto, bonito e engraçado",
+                "O VADER é muito esperto, bonito e engraçado",
+                "VADER é MUITO ESPERTO, bonito, e divertido", # ênfase para ALLCAPS tratado
+                "VADER é MUITO INTELIGENTE, bonito, e DIVERTIDO!!!",
+                "VADER é MUITO INTELIGENTE, bonito, e SUPER ENGRAÇADO!!!",
+                "VADER não é inteligente, bonito, nem engraçado", # exemplo de frase de negação
+                "O livro era bom", # frase positiva
+                "Pelo menos não é um livro horrível", # negou a frase negativa com contracção
+                "O livro era apenas do tipo bom.",
+                "O enredo foi bom, mas as personagens eram péssimas e o diálogo não era excelente.",
+                "Hoje está de chuva!", # calão negativo com ênfase na capitalização
+                "Hoje está mauzito! Mas eu vou sobreviver, lol",
+                "Assegura-te de que :) ou :D hoje!", # emoticons handled
+                "Apanhar emoji utf-8 tais como 💘 e 💋 e 😁", # emojis tratados
+                "Nada mau, não é ?" # Negação capitalizada
+                ]
+                                                            
 
-    analyzer = SentimentIntensityAnalyzer()
+    analyzer = SentimentIntensityAnalyzer(lang)
 
     print("----------------------------------------------------")
     print(" - Analyze typical example cases, including handling of:")
@@ -554,7 +581,7 @@ if __name__ == '__main__':
     print("  -- utf-8 encoded emojis such as 💘 and 💋 and 😁")
     print("  -- sentiment laden slang words (e.g., 'sux')")
     print("  -- sentiment laden initialisms and acronyms (for example: 'lol') \n")
-    for sentence in sentences:
+    for sentence in sentences[lang]:
         vs = analyzer.polarity_scores(sentence)
         print("{:-<65} {}".format(sentence, str(vs)))
     print("----------------------------------------------------")
@@ -568,7 +595,7 @@ if __name__ == '__main__':
      you want multidimensional measures of sentiment for a given sentence.""")
     print("----------------------------------------------------")
 
-    # input("\nPress Enter to continue the demo...\n")  # for DEMO purposes...
+    input("\nPress Enter to continue the demo...\n")  # for DEMO purposes...
 
     tricky_sentences = ["Sentiment analysis has never been good.",
                         "Sentiment analysis has never been this good!",

@@ -1,0 +1,61 @@
+absolutamente	1
+espantosamente	1
+terrivelmente	1
+completamente	1
+considerável	1
+consideravelmente	1
+decididamente	1
+profundamente	1
+enorme	1
+imensamente	1
+inteiramente	1
+especialmente	1
+excepcional	1
+excepcionalmente	1
+extremo	1
+extremamente	1
+fabulosamente	1
+totalmente	1
+muito	1
+altamente	1
+enormemente	1
+incrível	1
+incrivelmente	1
+intensamente	1
+elevado	1
+maioritariamente	1
+mais	1
+a maioria	1
+particularmente	1
+puramente	1
+bastante	1
+realmente	1
+notavelmente	1
+portanto	1
+substancialmente	1
+completamente	1
+total	1
+totalmente	1
+tremendo	1
+tremendamente	1
+inacreditavelmente	1
+invulgarmente	1
+quase	-1
+apenas	-1
+dificilmente	-1
+suficientemente	-1
+tipo	-1
+espécie de	-1
+menos	-1
+pouco	-1
+marginal	-1
+marginalmente	-1
+ocasional	-1
+ocasionalmente	-1
+em parte	-1
+escasso	-1
+apenas	-1
+ligeiro	-1
+ligeiramente	-1
+um pouco	-1
+tipo de	-1
